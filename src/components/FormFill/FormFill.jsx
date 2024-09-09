@@ -1,31 +1,39 @@
-import { objectsOfTasks } from '../../data';
 import './FormFill.css'
-import { useRef } from 'react'
+import { useState } from 'react'
 
-export default function FormFill(){
+export default function FormFill({addTask}){
 
-    let taskHeading = useRef();
-    let taskDescription = useRef();
+    const [taskHeading, setTaskHeading] = useState('');
+    const [taskDescription, setTaskDescription] = useState('');
 
-    function handleSubmit(event) {
-        // event.preventDefault()
+    function handleSubmit(event){
+        event.preventDefault();
+        addTask({taskHead: taskHeading, taskDesc: taskDescription})
 
-        objectsOfTasks.push({
-            taskHead: taskHeading.current.value,
-            taskDesc: taskDescription.current.value
-        })
+        setTaskHeading('');
+        setTaskDescription('');
     }
 
     return(
         <div className='form-fill'>
-            <form onSubmit={handleSubmit} >
+            <form onSubmit={handleSubmit}>
                 <label> Task Heading </label><br />
-                <input ref={taskHeading} type='text'/><br />
+                <input 
+                    type='text' 
+                    onChange={(e) => setTaskHeading(e.target.value)}
+                    value={taskHeading}
+                /><br />
 
                 <label> Task Description </label><br />
-                <textarea ref={taskDescription} id='description' rows='5' cols='40'/><br />
+                <textarea 
+                    id='description' 
+                    rows='5' 
+                    cols='40' 
+                    onChange={(e) => setTaskDescription(e.target.value)}
+                    value={taskDescription}
+                /><br />
 
-                <button> Add Task </button>
+                <button type='submit'> Add Task </button>
             </form>
         </div>
     )

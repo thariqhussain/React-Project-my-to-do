@@ -1,17 +1,28 @@
 import './MainPage.css'
-import { objectsOfTasks } from '../../data'
+import { useState } from 'react'
+import FormFill from '../FormFill/FormFill';
 
 export default function MainPage() {
+    const [myTasks, setMyTasks] = useState([
+        {
+            taskHead: '',
+            taskDesc: ''
+        }
+    ]);
 
-    console.log(objectsOfTasks)
+    function addTask(newTask){
+        setMyTasks([...myTasks, newTask])
+    }
 
     return (
         <div>
             <h2>Your Tasks</h2>
 
+            <FormFill addTask={addTask} />
+
             <section>
                 <ul>
-                    {objectsOfTasks.map((task, index) => (
+                    {myTasks.map((task, index) => (
                         <li key={index}>
                             <h2> { task.taskHead } </h2>
                             <p> { task.taskDesc } </p>
