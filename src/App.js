@@ -1,22 +1,23 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+
 import './App.css';
+import Header from './components/Header/Header';
+import MainPage from './components/MainPage/MainPage';
+import FormFill from './components/FormFill/FormFill';
 
 function App() {
+  const [showForm, setShowForm] = useState(false);
+
+  function handleClick() {
+    setShowForm(true);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Header />
+        <button onClick={handleClick} > Create a Task </button>
+        { showForm ? <FormFill /> : <MainPage /> }
       </header>
     </div>
   );

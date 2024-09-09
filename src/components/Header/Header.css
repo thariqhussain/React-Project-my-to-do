@@ -1,0 +1,21 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    border: 1px solid white;
+    height: 3rem;
+}
+.header, #main-logo {
+    color: orange;
+    font-size: 2rem;
+    font-weight: bolder;
+    font-style: italic;
+}
+.header img  {
+    height: 70px;
+    width: 170px;
+}
+#date-time {
+    width: 15%;
+}
